@@ -152,7 +152,6 @@ def write_results(preds, in_path, out_path):
 				'''
 				idx += 1
 				
-
 	#res_df.to_csv(out_path)
 
 

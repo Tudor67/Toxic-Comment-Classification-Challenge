@@ -31,5 +31,6 @@ def main():
 	(train_x, train_y, test_x) = generate_data(150005, 150005, 300)
 	print(svm_classifier(train_x, train_y, test_x))
 
+
 if __name__ == '__main__':
 	main()
