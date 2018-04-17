@@ -116,10 +116,6 @@ def data_preprocessing(df):
 
 
 def nb_classifier(train_x, train_y, test_x, method='BR'):
-    scaler = preprocessing.StandardScaler().fit(train_x)
-    train_x = scaler.transform(train_x)
-    test_x = scaler.transform(test_x)
-
     classifier = None
     if method == 'BR':
         classifier = BinaryRelevance(GaussianNB())
@@ -165,7 +161,8 @@ def write_results(pred, in_path, out_path):
     idx = 0
     for x in pred:
         # TODO: x.toarray()[0] for nb_classifier output
-        probs = x #x.toarray()[0]
+        #       x for svm_classifier output
+        probs = x.toarray()[0]
         
         for k in range(len(target_classes)):
             res_df[target_classes[k]].set_value(idx, probs[k])
