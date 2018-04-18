@@ -11,13 +11,14 @@ from nltk.stem.snowball import SnowballStemmer
 from skmultilearn.problem_transform import BinaryRelevance
 from skmultilearn.problem_transform import ClassifierChain
 from skmultilearn.problem_transform import LabelPowerset
+from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn import preprocessing
 from sklearn import svm
 
 
 IN_PATH = '../data/sample_submission.csv'
-OUT_PATH = '../results/submission_36.csv'
+OUT_PATH = '../results/submission_61.csv'
 DATA_PATH = '../data/'
 WORD2VEC_PATH = '../data/GoogleNews-vectors-negative300.bin'
 #MAX_NR_OF_COMMENTS = 10000
@@ -152,6 +153,21 @@ def svm_classifier(train_x, train_y, test_x, method='LinearSVC'):
     return pred
 
 
+def logistic_regression_with_word_embeddings(train_x, train_y, test_x,):
+    print('---logistic_regression (word_embbedings)---')
+    preds = np.zeros((len(test_x), len(target_classes)))
+
+    for i in range(len(target_classes)):
+        print('step: {}'.format(i))
+        lr_model = LogisticRegression(C=4, dual=True)
+        print('---fit---')
+        lr_model.fit(train_x, train_y[:,i])
+        print('---predict---')
+        preds[:,i] = lr_model.predict_proba(test_x)[:,1]
+
+    return preds
+
+
 def write_results(pred, in_path, out_path):
     res_df = pd.read_csv(in_path)
 
@@ -186,7 +202,8 @@ def main():
     (test_x, _) = data_preprocessing(test_df)
     
     print('---classify---')
-    preds = svm_classifier(train_x, train_y, test_x, method='SVC')
+    #preds = svm_classifier(train_x, train_y, test_x, method='SVC')
+    preds = logistic_regression_with_word_embeddings(train_x, train_y, test_x)
 
     print('---write results---')
     write_results(preds, IN_PATH, OUT_PATH)
