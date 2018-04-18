@@ -133,9 +133,9 @@ def nb_classifier(train_x, train_y, test_x, method='BR'):
 
 
 def svm_classifier(train_x, train_y, test_x, method='LinearSVC'):
-    scaler = preprocessing.StandardScaler().fit(train_x)
-    train_x = scaler.transform(train_x)
-    test_x = scaler.transform(test_x)
+    #scaler = preprocessing.StandardScaler(with_mean=False).fit(train_x)
+    #train_x = scaler.transform(train_x)
+    #test_x = scaler.transform(test_x)
 
     pred = np.zeros((test_x.shape[0], len(target_classes)))
 
