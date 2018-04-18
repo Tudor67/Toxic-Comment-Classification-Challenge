@@ -162,7 +162,7 @@ def write_results(pred, in_path, out_path):
     for x in pred:
         # TODO: x.toarray()[0] for nb_classifier output
         #       x for svm_classifier output
-        probs = x.toarray()[0]
+        probs = x #x.toarray()[0]
         
         for k in range(len(target_classes)):
             res_df[target_classes[k]].set_value(idx, probs[k])
