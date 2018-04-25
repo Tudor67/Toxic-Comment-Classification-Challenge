@@ -8,17 +8,17 @@ All details about the [Toxic Comment Classification Challenge](https://www.kaggl
 For the first two milestones, the proposed solutions have the following structure:
 1. **Preprocessing**
     * _**Tokenization**_. At this step, I split comments in words, ignoring punctuation marks, spaces, newlines and special characters.
-    * _**Stemming (SnowballStemmer) / Lemmatization (WordNetLemmatizer)**_[1]. I transform words from previous step to their word stems/lemmas.
+    * _**Stemming (SnowballStemmer) / Lemmatization (WordNetLemmatizer)**_[1][1]. I transform words from previous step to their word stems/lemmas.
       In my experiments, lemmatization always gives better results than stemming.
-    * _**Stopwords elimination**_[2].
+    * _**Stopwords elimination**_[2][2].
 2. **Feature extraction**
-    * _**Word embeddings**_. For this step, I used pretrained vectors for word stems/lemmas (from step 1), which were trained on part of Google News Dataset [3]. The model contains 300 - dimensional vectors for 3 million words and word phrases [4].
+    * _**Word embeddings**_. For this step, I used pretrained vectors for word stems/lemmas (from step 1), which were trained on part of Google News Dataset [3][3]. The model contains 300 - dimensional vectors for 3 million words and word phrases [4][4].
       Each comment is represented as the average of the word embeddings.
-    * _**TF-IDF**_. Comments are represented using tf-idf features [5]. This representation gives encouraging results even if it's simple.
+    * _**TF-IDF**_. Comments are represented using tf-idf features [5][5]. This representation gives encouraging results even if it's simple.
 3. **Classification**. I decompose the problem in 6 binary classification problems (binary relevance approach). For classification I try the following classifiers:
     * SVM;
     * Naive Bayes;
-    * Logistic Regression [6].
+    * Logistic Regression [6][6].
 
 ## Results
 
@@ -36,6 +36,5 @@ For the first two milestones, the proposed solutions have the following structur
 [2]: https://www.geeksforgeeks.org/removing-stop-words-nltk-python/
 [3]: http://ahogrammer.com/2017/01/20/the-list-of-pretrained-word-embeddings/
 [4]: https://code.google.com/archive/p/word2vec/
-[5]: https://stackoverflow.com/questions/47557417/understanding-text-feature-
-extraction-tfidfvectorizer-in-python-scikit-learn
+[5]: https://stackoverflow.com/questions/47557417/understanding-text-feature-extraction-tfidfvectorizer-in-python-scikit-learn
 [6]: https://www.kaggle.com/tunguz/logistic-regression-with-words-and-char-n-grams
