@@ -12,7 +12,7 @@ from sklearn.naive_bayes import GaussianNB, MultinomialNB
 
 DATA_PATH = '../data/'
 IN_PATH = '../data/sample_submission.csv'
-OUT_PATH = '../results/submission_63.csv'
+OUT_PATH = '../results/submission_66.csv'
 target_classes = ['toxic', 'severe_toxic', 'obscene', 'threat', 'insult', 'identity_hate']
 
 
@@ -70,7 +70,7 @@ def tf_idf_solution(classifier='NB'):
 
         for i in range(len(target_classes)):
             print('step: {}'.format(i))
-            lr_model = LogisticRegression(C=4, dual=True)
+            lr_model = LogisticRegression(C=4, dual=True, class_weight='balanced')
             print('---fit---')
             lr_model.fit(train_x, train_y[:,i])
             print('---predict---')
@@ -82,7 +82,7 @@ def tf_idf_solution(classifier='NB'):
 
 
 def main():
-    tf_idf_solution('SVM')
+    tf_idf_solution('LR')
 
 
 if __name__ == '__main__':

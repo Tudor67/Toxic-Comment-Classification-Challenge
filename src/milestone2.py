@@ -18,7 +18,7 @@ from sklearn import svm
 
 
 IN_PATH = '../data/sample_submission.csv'
-OUT_PATH = '../results/submission_61.csv'
+OUT_PATH = '../results/submission_67.csv'
 DATA_PATH = '../data/'
 WORD2VEC_PATH = '../data/GoogleNews-vectors-negative300.bin'
 #MAX_NR_OF_COMMENTS = 10000
@@ -159,7 +159,7 @@ def logistic_regression_with_word_embeddings(train_x, train_y, test_x,):
 
     for i in range(len(target_classes)):
         print('step: {}'.format(i))
-        lr_model = LogisticRegression(C=4, dual=True)
+        lr_model = LogisticRegression(C=4, dual=True, class_weight='balanced')
         print('---fit---')
         lr_model.fit(train_x, train_y[:,i])
         print('---predict---')
